@@ -2,6 +2,8 @@
 
 Welcome to King.js, a real-time chess game where you can play against your friends or random opponents online!
 
+![Uploading Screenshot 2024-04-28 at 6.59.30 PM.png…]()
+
 ## Features
 
 - Real-time multiplayer chess gameplay.
