@@ -28,6 +28,7 @@ export default function ChessBoard({ chess, board, socket, setBoard }: {
                 if (!from) {
                   setFrom(squareRepresentation);
                 } else {
+                  console.log('from - ', from, 'squareRepresentation - ', squareRepresentation);
                   socket.send(JSON.stringify({
                     type: MOVE,
                     payload: {
@@ -44,10 +45,10 @@ export default function ChessBoard({ chess, board, socket, setBoard }: {
                   });
                   setBoard(chess.board());
                 }
-              }} key={j} className={`w-16 h-16 ${(i + j) % 2 === 0 ? 'bg-green-500' : 'bg-white'}`}>
+              }} key={j} className={`w-16 h-16 ${(i + j) % 2 === 0 ? 'bg-green-500' : 'bg-yellow-50'}`}>
                 <div className="w-full justify-center flex h-full">
                   <div className="h-full justify-center flex flex-col">
-                    {square ? <img className = 'w-4' src = {`/${square?.color === 'b' ? square?.type : `${square?.type?.toUpperCase()} copy`}.png`}/> : null}
+                    {square ? <img className = 'w-8' src = {`/${square?.color === 'b' ? square?.type : `${square?.type?.toUpperCase()} copy`}.png`}/> : null}
                   </div>
                 </div>
               </div>
