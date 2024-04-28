@@ -12,6 +12,7 @@ export const Game = () => {
   const socket = useSocket();
   const [chess, setChess] = useState(new Chess());
   const [board, setBoard] = useState(chess.board());
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     if(!socket) {
@@ -25,6 +26,7 @@ export const Game = () => {
         case INIT_GAME:
           setBoard(chess.board());
           console.log('Game initialized');
+          setStarted(true);
           break;
 
         case MOVE: 
@@ -33,7 +35,7 @@ export const Game = () => {
           setBoard(chess.board());
           console.log('User made move');
           break;
-          
+
         case GAME_OVER: 
           console.log('Game Over');
           break;
@@ -54,13 +56,13 @@ export const Game = () => {
           </div>
           <div className = 'col-span-2 bg-slate-900 w-full flex justify-center'>
             <div className = 'pt-8'>
-              <Button onClick = {() =>{
+              {!started && <Button onClick = {() =>{
                     socket?.send(JSON.stringify({
                       type: INIT_GAME
                     }))
                   }}>
                   Play
-              </Button>
+              </Button>}
             </div>
           </div>
         </div>
